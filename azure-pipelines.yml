@@ -1,0 +1,58 @@
+trigger:
+- main
+- dev
+
+pr:
+- '*'
+
+pool:
+  name: 'Hosted Agent' # Replace with your agent pool name
+
+variables:
+  buildConfiguration: 'Release'
+  sonarCloudToken: '5b30826e4d335cd54e451c52006b6b5f965ca4cf'  # Replace with the SonarCloud token you generated
+
+stages:
+- stage: BuildAndAnalyze
+  displayName: 'Build and Analyze'
+  jobs:
+  - job: BuildAndAnalyze
+    displayName: 'Build and Analyze Job'
+    pool:
+      name: 'Hosted Agent' # Replace with your agent pool name
+
+    steps:
+    - checkout: self
+
+    - script: |
+        # Download and install SonarScanner
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+        unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+        export PATH=$PATH:$(Agent.TempDirectory)/sonar-scanner-4.6.2.2472-linux/bin
+
+        # Run SonarCloud analysis
+        sonar-scanner \
+          -Dsonar.login=$env:5b30826e4d335cd54e451c52006b6b5f965ca4cf \
+          -Dsonar.organization=ronakthecloud \
+          -Dsonar.projectKey=ronakthecloud_repos2 \
+          -Dsonar.projectName=repos2 \
+          -Dsonar.sources=.
+      displayName: 'Run SonarCloud Analysis'
+
+- stage: Deploy
+  displayName: 'Deploy to Environment'
+  dependsOn: BuildAndAnalyze
+  condition: succeeded()
+
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy Job'
+    pool:
+      name: 'Hosted Agent' # Replace with your agent pool name
+
+    steps:
+    - checkout: self
+
+    - script: echo 'Deploying...'
+      displayName: 'Deploy'
+      # Add your deployment steps here, for example, copying files to a web server
