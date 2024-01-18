@@ -6,7 +6,7 @@ pr:
 - '*'
 
 pool:
-  name: 'Hosted Agent' # Replace with your agent pool name
+  name: 'my-pool' # Replace with your agent pool name
 
 variables:
   buildConfiguration: 'Release'
@@ -19,7 +19,7 @@ stages:
   - job: BuildAndAnalyze
     displayName: 'Build and Analyze Job'
     pool:
-      name: 'Hosted Agent' # Replace with your agent pool name
+      name: 'my-pool' # Replace with your agent pool name
 
     steps:
     - checkout: self
