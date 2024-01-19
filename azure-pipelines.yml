@@ -30,7 +30,7 @@ stages:
           -Dsonar.organization=ronakthecloud \
           -Dsonar.projectKey=ronakthecloud_repos2 \
           -Dsonar.sources=. \
-          -Dsonar.host.url=https://sonarcloud.io
+          -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.scanner.force-deprecated-java-version=true
       displayName: 'Run SonarCloud Analysis'
 
