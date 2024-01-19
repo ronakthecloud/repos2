@@ -38,12 +38,11 @@ stages:
         sonar-scanner -v
 
         # Use the full path to the executable
-        $SONAR_SCANNER_HOME/bin/sonar-scanner \
-          -Dsonar.login=$env:5b30826e4d335cd54e451c52006b6b5f965ca4cf \
+        sonar-scanner \
           -Dsonar.organization=ronakthecloud \
           -Dsonar.projectKey=ronakthecloud_repos2 \
-          -Dsonar.projectName=repos2 \
-          -Dsonar.sources=.
+          -Dsonar.sources=. \
+          -Dsonar.host.url=https://sonarcloud.io
       displayName: 'Run SonarCloud Analysis'
 
 - stage: Deploy
