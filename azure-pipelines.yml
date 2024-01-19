@@ -6,7 +6,7 @@ pr:
 - '*'
 
 pool:
-  name: 'my-pool' # Replace with your agent pool name
+  name: 'my-pool' # Replace with your agent pool name 1
 
 variables:
   buildConfiguration: 'Release'
