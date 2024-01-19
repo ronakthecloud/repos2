@@ -25,20 +25,8 @@ stages:
     - checkout: self
 
     - script: |
-        # Download and install SonarScanner
-        #wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-        #unzip sonar-scanner-cli-4.6.2.2472-linux.zip
-        #export SONAR_SCANNER_HOME=$(Agent.TempDirectory)/sonar-scanner-4.6.2.2472-linux
-        #export PATH=$PATH:$SONAR_SCANNER_HOME/bin
-
-        # Print out the contents of the temporary directory for debugging
-        #ls -R $(Agent.TempDirectory)
-
-        # Run SonarCloud analysis
-        #sonar-scanner -v
-
         # Use the full path to the executable
-        sonar-scanner \
+        $HOME/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
           -Dsonar.organization=ronakthecloud \
           -Dsonar.projectKey=ronakthecloud_repos2 \
           -Dsonar.sources=. \
