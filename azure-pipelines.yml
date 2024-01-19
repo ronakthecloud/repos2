@@ -10,7 +10,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  sonarCloudToken: '5b30826e4d335cd54e451c52006b6b5f965ca4cf'  # Replace with the SonarCloud token you generated 1
+  sonarCloudToken: '5b30826e4d335cd54e451c52006b6b5f965ca4cf'  # Replace with the SonarCloud token you generated
 
 stages:
 - stage: BuildAndAnalyze
@@ -31,7 +31,7 @@ stages:
         export PATH=$PATH:$(Agent.TempDirectory)/sonar-scanner-4.6.2.2472-linux/bin
 
         # Run SonarCloud analysis
-        sonar-scanner \
+        $(Agent.TempDirectory)/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner \
           -Dsonar.login=$env:5b30826e4d335cd54e451c52006b6b5f965ca4cf \
           -Dsonar.organization=ronakthecloud \
           -Dsonar.projectKey=ronakthecloud_repos2 \
