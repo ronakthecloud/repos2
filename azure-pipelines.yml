@@ -10,7 +10,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  sonarCloudToken: '5b30826e4d335cd54e451c52006b6b5f965ca4cf'  # Replace with the SonarCloud token you generated
+  sonarCloudToken: '1f6c45cb41277a1f2b61874b462324c4bb3bf6d6'  # Replace with the SonarCloud token you generated
 
 stages:
 - stage: BuildAndAnalyze
